@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/aeternity.js", "pages/index.js", "components/Steps.jsx", "context/StakerContext.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/aeternity.js", "pages/index.js", "components/Steps.jsx", "context/StakerContext.js", "pages/borrow.js", "pages/borrow.js"],
   "exclude": ["node_modules"]
 }

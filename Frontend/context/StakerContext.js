@@ -112,7 +112,7 @@ export const StakerProvider = ({ children }) => {
   const calcDaysRemaining = (unlockDate) => {
     const timeNow = Date.now()
     const secondsRemaining = unlockDate - timeNow
-    return Math.max( ((secondsRemaining / 60 /60 /60 / 24) * 30).toFixed(0), 0)
+    return Math.max( ((secondsRemaining / 60 /60 / 24)).toFixed(0), 0)
   }
 
   const getAssets = async (ids) => {
