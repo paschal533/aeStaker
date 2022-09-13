@@ -21,7 +21,7 @@ const Debt = () => {
       position: "top-left",
       title: "Borrow",
       description: "Please fill the form correctly",
-      status: "error",
+      //status: "error",
       duration: 9000,
       isClosable: true,
     }); 
