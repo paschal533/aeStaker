@@ -18,7 +18,7 @@ const Debt = () => {
     const { price, address } = formInput;
     if (!price || !address )  
     return  toast({
-      //position: "top-left",
+      position: "top-left",
       title: "Borrow",
       description: "Please fill the form correctly",
       status: "error",
