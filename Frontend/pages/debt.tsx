@@ -19,7 +19,7 @@ const Debt = () => {
     if (!price || !address )  
     return  toast({
       position: "top-left",
-      //title: "Borrow",
+      title: "Borrow",
       description: "Please fill the form correctly",
       status: "error",
       duration: 9000,
