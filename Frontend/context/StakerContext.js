@@ -1,5 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 import { AeSdk, Node, AE_AMOUNT_FORMATS } from '@aeternity/aepp-sdk'
+import { useRouter } from "next/router";
 import { iniSDK } from '../utils/aeternity.ts';
 import { ContractAci } from "./constants";
 import { useToast } from "@chakra-ui/react";
@@ -16,6 +17,7 @@ export const StakerProvider = ({ children }) => {
   const [assets, setAssets] = useState(null);
   const [loading, setLoading] = useState(false);
   const toast = useToast();
+  const router = useRouter();
 
   const init = async () => {
     try {
@@ -162,6 +164,31 @@ export const StakerProvider = ({ children }) => {
     }
   }
 
+  const payDebt = async (addrs, value) => {
+    try {
+      await contract.payBorrowedFund(addrs, { onAccount: account, amount : value })
+      toast({
+        position: "top-left",
+        title: "Pay Debt",
+        description: "Your debts have been paid successfully",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      router.push('/')
+    }catch(error){
+      console.log(error)
+      toast({
+        position: "top-left",
+        title: "Pay Debt",
+        description: "Address owner is not a debtor",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }
+
   return (
     <StakerContext.Provider
       value={{
@@ -173,7 +200,8 @@ export const StakerProvider = ({ children }) => {
         stakeAE,
         assets,
         loading,
-        withdraw
+        withdraw,
+        payDebt
       }}
     >
       {children}

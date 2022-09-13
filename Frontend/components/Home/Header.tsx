@@ -24,6 +24,7 @@ function Header() {
         <Link href="/"><h1 className="headerLink">Explore</h1></Link>
         <Link href="/stake"><h1 className="headerLink">Stake</h1></Link>
         <Link href="/borrow"><h1 className="headerLink">Borrow</h1></Link>
+        <Link href="/debt"><h1 className="headerLink">Debt</h1></Link>
       </div>
       <div className="flex items-center justify-center gap-x-4 sm:w-[50vw] w-1/5">
         {!address ? <Button title="Connect Wallet" onClick={() => fetchAccount()} /> :  <Button title={`${address.slice(0,6)}...${address.slice(-5)}`} />}
