@@ -5,7 +5,7 @@ import { iniSDK } from "../utils/aeternity.ts";
 import { ContractAci } from "./constants";
 import { useToast } from "@chakra-ui/react";
 
-export const StakerContext = createContext();
+//export const StakerContext = createContext();
 
 export const StakerProvider = ({ children }) => {
   const [sdkReady, setSdkReady] = useState(false);
