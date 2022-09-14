@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Button from "./Button";
-import Coin from "../../assets/coin.png";
+import Coin from "../../assets/coin.webp";
 import Link from "next/link";
 
 function Landing() {

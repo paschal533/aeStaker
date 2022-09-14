@@ -1,8 +1,8 @@
 import Image from "next/image";
 import One from "../../assets/1.png";
 import Two from "../../assets/2.png";
-import Bag from "../../assets/bag.png";
-import Basket from "../../assets/Basket.png";
+import Bag from "../../assets/bag.webp";
+import Basket from "../../assets/Basket.webp";
 
 const StakeStep = () => {
   return (
