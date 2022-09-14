@@ -1,13 +1,12 @@
- /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Flex, Box, Text, Grid, Link } from "@chakra-ui/react";
 import Image from "next/image";
-import Chocie from "../../assets/chocie.png"
-import Lend from "../../assets/lend.png"
-import Stake from "../../assets/stake.png"
-
+import Chocie from "../../assets/chocie.png";
+import Lend from "../../assets/lend.png";
+import Stake from "../../assets/stake.png";
 
 export default function Steps() {
-  const Step = ({ step, title, description } : any) => {
+  const Step = ({ step, title, description }: any) => {
     return (
       <Flex
         direction="column"
@@ -55,9 +54,8 @@ export default function Steps() {
       w="full"
       opacity="0.97"
       mx="auto"
-       
     >
-       <Grid
+      <Grid
         mt="2"
         px="10"
         maxW="6xl"
@@ -74,20 +72,13 @@ export default function Steps() {
         <Step
           title="Stake"
           step={Stake}
-          description={
-            <>
-              {" "}
-               Stake your AE token and earn massive rewards
-            </>
-          }
+          description={<> Stake your AE token and earn massive rewards</>}
         />
         <Step
           title="Borrow"
           step={Lend}
           description={
-            <>
-              We let you borrow any amount of money with little interest
-            </>
+            <>We let you borrow any amount of money with little interest</>
           }
         />
         <Step
@@ -95,7 +86,8 @@ export default function Steps() {
           step={Chocie}
           description={
             <>
-              You retain your right to choose your plan for staking as well as borrowing
+              You retain your right to choose your plan for staking as well as
+              borrowing
             </>
           }
         />

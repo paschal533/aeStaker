@@ -10,15 +10,19 @@ function Landing() {
       <div className="space-y-8">
         <h1 className="space-y-3 text-5xl font-semibold tracking-wide lg:text-6xl xl:text-7xl">
           <span className="block bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-             Earn
+            Earn
           </span>
           <span className="block">As you Stake</span>
           <span className="block">Driven By Values</span>
         </h1>
 
         <div className="space-x-8">
-          <Link href="/stake"><Button title="Stake Now" /></Link>
-          <Link href="/borrow" className="link">Borrow</Link>
+          <Link href="/stake">
+            <Button title="Stake Now" />
+          </Link>
+          <Link href="/borrow" className="link">
+            Borrow
+          </Link>
         </div>
       </div>
 

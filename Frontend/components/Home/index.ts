@@ -6,4 +6,4 @@ import StakeStep from "./StakeStep";
 import BorrowStep from "./BorrowStep";
 import Footer from "./Footer";
 
-export { Button, Header, Landing, Steps, StakeStep, BorrowStep, Footer};
+export { Button, Header, Landing, Steps, StakeStep, BorrowStep, Footer };

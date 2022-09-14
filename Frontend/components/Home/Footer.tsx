@@ -1,4 +1,4 @@
- /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { Flex, Text, Box, Grid, Divider, Link } from "@chakra-ui/react";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import NextLink from "next/link";
 import { TwitterShareButton } from "react-twitter-embed";
 //import Logo from '../assets/logo.png';
 
-const TextLink = ({ text, href } : any) => {
+const TextLink = ({ text, href }: any) => {
   return (
     <Link href={href} target="_blank" rel="noreferrer">
       <Text color="white">{text}</Text>
@@ -40,7 +40,12 @@ export default function Footer() {
       >
         <NextLink href="/" passHref>
           <Flex alignItems="center" experimental_spaceX="6" cursor="pointer">
-           <Image height={80} width={80} src="https://rb.gy/vsvv2o" alt="dfunds" />
+            <Image
+              height={80}
+              width={80}
+              src="https://rb.gy/vsvv2o"
+              alt="dfunds"
+            />
             <Flex
               fontSize={{ base: "4xl", lg: "6xl" }}
               color="white"
@@ -69,10 +74,7 @@ export default function Footer() {
           color="white"
         >
           <Grid templateColumns="repeat(1,1fr)" gap="4">
-            <TextLink
-              text="Contract"
-              href="/"
-            />
+            <TextLink text="Contract" href="/" />
             <TwitterShareButton
               url={"https://dfund.netlify.app/"}
               options={{
@@ -81,10 +83,7 @@ export default function Footer() {
             />
           </Grid>
           <Grid templateColumns="repeat(1,1fr)" gap="4">
-            <TextLink
-              text="Support"
-              href="mailto:okwuosahpaschal@gmail.com"
-            />
+            <TextLink text="Support" href="mailto:okwuosahpaschal@gmail.com" />
             <TextLink text="Product" href="/" />
           </Grid>
           <Grid templateColumns="repeat(1,1fr)" gap="4">

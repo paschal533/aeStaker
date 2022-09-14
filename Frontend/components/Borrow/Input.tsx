@@ -1,7 +1,4 @@
-
-
-const Input = ({ inputType, title, placeholder, handleClick } : any) => {
-
+const Input = ({ inputType, title, placeholder, handleClick }: any) => {
   return (
     <div className="mt-10 w-full">
       <p className="font-poppins dark:text-white text-nft-black-1 font-semibold text-xl">

@@ -4,10 +4,4 @@ import Banner from "./Banner";
 import Staked from "./Staked";
 import Loader from "./Loading";
 
-export {
-  StakerOptions,
-  BalanceStaked,
-  Banner,
-  Staked,
-  Loader
-}
+export { StakerOptions, BalanceStaked, Banner, Staked, Loader };

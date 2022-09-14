@@ -1,5 +1,4 @@
-
-const Banner = ({ name, childStyles, parentStyle } : any) => (
+const Banner = ({ name, childStyles, parentStyle }: any) => (
   <div
     className={`relative w-full flex items-center z-0 overflow-hidden bg-[#871c8a] ${parentStyle}`}
   >

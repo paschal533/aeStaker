@@ -1,17 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { ChakraProvider } from '@chakra-ui/react'
-import { StakerProvider } from '../context/StakerContext'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { ChakraProvider } from "@chakra-ui/react";
+import { StakerProvider } from "../context/StakerContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
-
-  return(
+  return (
     <ChakraProvider>
       <StakerProvider>
         <Component {...pageProps} />
-    </StakerProvider>
-   </ChakraProvider>
-  )
+      </StakerProvider>
+    </ChakraProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

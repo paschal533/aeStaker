@@ -1,1 +1,234 @@
-{"aci": {"encodedAci":{"contract":{"event":{"variant":[{"Stake":["int","address","int"]},{"Withdraw":["int","address","int"]},{"Borrow":["address","int","int"]},{"Paid":["address","int","bool"]}]},"functions":[{"arguments":[],"name":"init","payable":false,"returns":"Stake.state","stateful":true},{"arguments":[],"name":"owner","payable":false,"returns":"address","stateful":false},{"arguments":[{"name":"value","type":"int"}],"name":"contract_tiers","payable":false,"returns":"int","stateful":false},{"arguments":[{"name":"value","type":"int"}],"name":"contract_lockPeriods","payable":false,"returns":"int","stateful":false},{"arguments":[],"name":"contract_currentPositionId","payable":false,"returns":"int","stateful":false},{"arguments":[{"name":"numDays","type":"int"}],"name":"stakeAE","payable":true,"returns":{"tuple":[]},"stateful":true},{"arguments":[{"name":"basisPoints","type":"int"},{"name":"aeAmount","type":"int"}],"name":"calculateInterest","payable":false,"returns":"int","stateful":false},{"arguments":[{"name":"numDays","type":"int"},{"name":"basisPoints","type":"int"}],"name":"modifyLockPeriods","payable":false,"returns":{"tuple":[]},"stateful":true},{"arguments":[{"name":"value","type":"int"}],"name":"getInterestRate","payable":false,"returns":"int","stateful":false},{"arguments":[{"name":"positionId","type":"int"}],"name":"getPositionById","payable":false,"returns":"Stake.position","stateful":false},{"arguments":[{"name":"walletAddress","type":"address"}],"name":"getPositionIdForAddress","payable":false,"returns":{"list":["int"]},"stateful":false},{"arguments":[{"name":"walletAddress","type":"address"}],"name":"getPositionIdForBorrower","payable":false,"returns":"int","stateful":false},{"arguments":[],"name":"caller_balance","payable":false,"returns":"int","stateful":false},{"arguments":[],"name":"getContactAddress","payable":false,"returns":"address","stateful":false},{"arguments":[],"name":"getContactBalance","payable":false,"returns":"int","stateful":false},{"arguments":[{"name":"positionId","type":"int"},{"name":"newUnlockDate","type":"int"}],"name":"changeUnlockDate","payable":false,"returns":{"tuple":[]},"stateful":true},{"arguments":[{"name":"positionId","type":"int"}],"name":"closePosition","payable":false,"returns":{"tuple":[]},"stateful":true},{"arguments":[{"name":"amount","type":"int"},{"name":"sendTo","type":"address"},{"name":"endDate","type":"int"}],"name":"borrowFunds","payable":false,"returns":{"tuple":[]},"stateful":true},{"arguments":[{"name":"borrower","type":"address"}],"name":"payBorrowedFund","payable":true,"returns":{"tuple":[]},"stateful":true}],"kind":"contract_main","name":"Stake","payable":true,"state":{"record":[{"name":"owner","type":"address"},{"name":"contract_address","type":"address"},{"name":"currentPositionId","type":"int"},{"name":"tiers","type":{"map":["int","int"]}},{"name":"lockPeriods","type":{"map":["int","int"]}},{"name":"lockPeriodsIndex","type":"int"},{"name":"borrowPositionId","type":"int"},{"name":"positions","type":{"map":["int","Stake.position"]}},{"name":"borrowers","type":{"map":["int","Stake.borrower"]}},{"name":"borrowerIdByAddress","type":{"map":["address","int"]}},{"name":"positionIdsByAddress","type":{"map":["address",{"list":["int"]}]}}]},"type_defs":[{"name":"position","typedef":{"record":[{"name":"positionId","type":"int"},{"name":"walletAddress","type":"address"},{"name":"createdDate","type":"int"},{"name":"unlockDate","type":"int"},{"name":"percentInterest","type":"int"},{"name":"aeStaked","type":"int"},{"name":"aeInterest","type":"int"},{"name":"open","type":"bool"}]},"vars":[]},{"name":"borrower","typedef":{"record":[{"name":"positionId","type":"int"},{"name":"walletAddress","type":"address"},{"name":"createdDate","type":"int"},{"name":"endDate","type":"int"},{"name":"percentInterest","type":"int"},{"name":"aeBorrowed","type":"int"},{"name":"aeInterest","type":"int"},{"name":"paid","type":"bool"}]},"vars":[]}]}},"externalEncodedAci":[{"namespace":{"name":"ListInternal","type_defs":[]}},{"namespace":{"name":"List","type_defs":[]}},{"namespace":{"name":"Option","type_defs":[]}}],"interface":"\n\n\npayable main contract Stake =\n  record state = {owner : address,contract_address : address,currentPositionId : int,tiers : map(int, int),lockPeriods : map(int, int),lockPeriodsIndex : int,borrowPositionId : int,positions : map(int, Stake.position),borrowers : map(int, Stake.borrower),borrowerIdByAddress : map(address, int),positionIdsByAddress : map(address, list(int))}\n  datatype event = Stake(int, address, int) | Withdraw(int, address, int) | Borrow(address, int, int) | Paid(address, int, bool)\n  record position = {positionId : int,walletAddress : address,createdDate : int,unlockDate : int,percentInterest : int,aeStaked : int,aeInterest : int,open : bool}\n  record borrower = {positionId : int,walletAddress : address,createdDate : int,endDate : int,percentInterest : int,aeBorrowed : int,aeInterest : int,paid : bool}\n  stateful entrypoint init : () => Stake.state\n  entrypoint owner : () => address\n  entrypoint contract_tiers : (int) => int\n  entrypoint contract_lockPeriods : (int) => int\n  entrypoint contract_currentPositionId : () => int\n  payable stateful entrypoint stakeAE : (int) => unit\n  entrypoint calculateInterest : (int, int) => int\n  stateful entrypoint modifyLockPeriods : (int, int) => unit\n  entrypoint getInterestRate : (int) => int\n  entrypoint getPositionById : (int) => Stake.position\n  entrypoint getPositionIdForAddress : (address) => list(int)\n  entrypoint getPositionIdForBorrower : (address) => int\n  entrypoint caller_balance : () => int\n  entrypoint getContactAddress : () => address\n  entrypoint getContactBalance : () => int\n  stateful entrypoint changeUnlockDate : (int, int) => unit\n  stateful entrypoint closePosition : (int) => unit\n  stateful entrypoint borrowFunds : (int, address, int) => unit\n  payable stateful entrypoint payBorrowedFund : (address) => unit\n"}}
+{
+  "aci": {
+    "encodedAci": {
+      "contract": {
+        "event": {
+          "variant": [
+            { "Stake": ["int", "address", "int"] },
+            { "Withdraw": ["int", "address", "int"] },
+            { "Borrow": ["address", "int", "int"] },
+            { "Paid": ["address", "int", "bool"] }
+          ]
+        },
+        "functions": [
+          {
+            "arguments": [],
+            "name": "init",
+            "payable": false,
+            "returns": "Stake.state",
+            "stateful": true
+          },
+          {
+            "arguments": [],
+            "name": "owner",
+            "payable": false,
+            "returns": "address",
+            "stateful": false
+          },
+          {
+            "arguments": [{ "name": "value", "type": "int" }],
+            "name": "contract_tiers",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [{ "name": "value", "type": "int" }],
+            "name": "contract_lockPeriods",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [],
+            "name": "contract_currentPositionId",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [{ "name": "numDays", "type": "int" }],
+            "name": "stakeAE",
+            "payable": true,
+            "returns": { "tuple": [] },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              { "name": "basisPoints", "type": "int" },
+              { "name": "aeAmount", "type": "int" }
+            ],
+            "name": "calculateInterest",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [
+              { "name": "numDays", "type": "int" },
+              { "name": "basisPoints", "type": "int" }
+            ],
+            "name": "modifyLockPeriods",
+            "payable": false,
+            "returns": { "tuple": [] },
+            "stateful": true
+          },
+          {
+            "arguments": [{ "name": "value", "type": "int" }],
+            "name": "getInterestRate",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [{ "name": "positionId", "type": "int" }],
+            "name": "getPositionById",
+            "payable": false,
+            "returns": "Stake.position",
+            "stateful": false
+          },
+          {
+            "arguments": [{ "name": "walletAddress", "type": "address" }],
+            "name": "getPositionIdForAddress",
+            "payable": false,
+            "returns": { "list": ["int"] },
+            "stateful": false
+          },
+          {
+            "arguments": [{ "name": "walletAddress", "type": "address" }],
+            "name": "getPositionIdForBorrower",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [],
+            "name": "caller_balance",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [],
+            "name": "getContactAddress",
+            "payable": false,
+            "returns": "address",
+            "stateful": false
+          },
+          {
+            "arguments": [],
+            "name": "getContactBalance",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [
+              { "name": "positionId", "type": "int" },
+              { "name": "newUnlockDate", "type": "int" }
+            ],
+            "name": "changeUnlockDate",
+            "payable": false,
+            "returns": { "tuple": [] },
+            "stateful": true
+          },
+          {
+            "arguments": [{ "name": "positionId", "type": "int" }],
+            "name": "closePosition",
+            "payable": false,
+            "returns": { "tuple": [] },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              { "name": "amount", "type": "int" },
+              { "name": "sendTo", "type": "address" },
+              { "name": "endDate", "type": "int" }
+            ],
+            "name": "borrowFunds",
+            "payable": false,
+            "returns": { "tuple": [] },
+            "stateful": true
+          },
+          {
+            "arguments": [{ "name": "borrower", "type": "address" }],
+            "name": "payBorrowedFund",
+            "payable": true,
+            "returns": { "tuple": [] },
+            "stateful": true
+          }
+        ],
+        "kind": "contract_main",
+        "name": "Stake",
+        "payable": true,
+        "state": {
+          "record": [
+            { "name": "owner", "type": "address" },
+            { "name": "contract_address", "type": "address" },
+            { "name": "currentPositionId", "type": "int" },
+            { "name": "tiers", "type": { "map": ["int", "int"] } },
+            { "name": "lockPeriods", "type": { "map": ["int", "int"] } },
+            { "name": "lockPeriodsIndex", "type": "int" },
+            { "name": "borrowPositionId", "type": "int" },
+            {
+              "name": "positions",
+              "type": { "map": ["int", "Stake.position"] }
+            },
+            {
+              "name": "borrowers",
+              "type": { "map": ["int", "Stake.borrower"] }
+            },
+            {
+              "name": "borrowerIdByAddress",
+              "type": { "map": ["address", "int"] }
+            },
+            {
+              "name": "positionIdsByAddress",
+              "type": { "map": ["address", { "list": ["int"] }] }
+            }
+          ]
+        },
+        "type_defs": [
+          {
+            "name": "position",
+            "typedef": {
+              "record": [
+                { "name": "positionId", "type": "int" },
+                { "name": "walletAddress", "type": "address" },
+                { "name": "createdDate", "type": "int" },
+                { "name": "unlockDate", "type": "int" },
+                { "name": "percentInterest", "type": "int" },
+                { "name": "aeStaked", "type": "int" },
+                { "name": "aeInterest", "type": "int" },
+                { "name": "open", "type": "bool" }
+              ]
+            },
+            "vars": []
+          },
+          {
+            "name": "borrower",
+            "typedef": {
+              "record": [
+                { "name": "positionId", "type": "int" },
+                { "name": "walletAddress", "type": "address" },
+                { "name": "createdDate", "type": "int" },
+                { "name": "endDate", "type": "int" },
+                { "name": "percentInterest", "type": "int" },
+                { "name": "aeBorrowed", "type": "int" },
+                { "name": "aeInterest", "type": "int" },
+                { "name": "paid", "type": "bool" }
+              ]
+            },
+            "vars": []
+          }
+        ]
+      }
+    },
+    "externalEncodedAci": [
+      { "namespace": { "name": "ListInternal", "type_defs": [] } },
+      { "namespace": { "name": "List", "type_defs": [] } },
+      { "namespace": { "name": "Option", "type_defs": [] } }
+    ],
+    "interface": "\n\n\npayable main contract Stake =\n  record state = {owner : address,contract_address : address,currentPositionId : int,tiers : map(int, int),lockPeriods : map(int, int),lockPeriodsIndex : int,borrowPositionId : int,positions : map(int, Stake.position),borrowers : map(int, Stake.borrower),borrowerIdByAddress : map(address, int),positionIdsByAddress : map(address, list(int))}\n  datatype event = Stake(int, address, int) | Withdraw(int, address, int) | Borrow(address, int, int) | Paid(address, int, bool)\n  record position = {positionId : int,walletAddress : address,createdDate : int,unlockDate : int,percentInterest : int,aeStaked : int,aeInterest : int,open : bool}\n  record borrower = {positionId : int,walletAddress : address,createdDate : int,endDate : int,percentInterest : int,aeBorrowed : int,aeInterest : int,paid : bool}\n  stateful entrypoint init : () => Stake.state\n  entrypoint owner : () => address\n  entrypoint contract_tiers : (int) => int\n  entrypoint contract_lockPeriods : (int) => int\n  entrypoint contract_currentPositionId : () => int\n  payable stateful entrypoint stakeAE : (int) => unit\n  entrypoint calculateInterest : (int, int) => int\n  stateful entrypoint modifyLockPeriods : (int, int) => unit\n  entrypoint getInterestRate : (int) => int\n  entrypoint getPositionById : (int) => Stake.position\n  entrypoint getPositionIdForAddress : (address) => list(int)\n  entrypoint getPositionIdForBorrower : (address) => int\n  entrypoint caller_balance : () => int\n  entrypoint getContactAddress : () => address\n  entrypoint getContactBalance : () => int\n  stateful entrypoint changeUnlockDate : (int, int) => unit\n  stateful entrypoint closePosition : (int) => unit\n  stateful entrypoint borrowFunds : (int, address, int) => unit\n  payable stateful entrypoint payBorrowedFund : (address) => unit\n"
+  }
+}
