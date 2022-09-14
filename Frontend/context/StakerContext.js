@@ -2,7 +2,7 @@ import { useEffect, useState, createContext } from "react";
 import { AeSdk, Node, AE_AMOUNT_FORMATS } from "@aeternity/aepp-sdk";
 import { useRouter } from "next/router";
 import { iniSDK } from "../utils/aeternity.ts";
-//import { ContractAci } from "./constants";
+import { ContractAci } from "./constants";
 import { useToast } from "@chakra-ui/react";
 
 export const StakerContext = createContext();
