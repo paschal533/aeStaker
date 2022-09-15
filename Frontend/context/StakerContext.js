@@ -17,6 +17,7 @@ export const StakerProvider = ({ children }) => {
   const [assets, setAssets] = useState(null);
   const [loading, setLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(false);
+  const [loadingAsset, setLoadingAsset] = useState(false);
   const toast = useToast();
   const router = useRouter();
 
@@ -37,13 +38,11 @@ export const StakerProvider = ({ children }) => {
       });
       setContract(contractInstance.methods);
 
-      if (address && contract) {
-        const { decodedResult } =
-          await contractInstance.methods.getPositionIdForAddress(address, {
-            onAccount: account,
-          });
-        getAssets(decodedResult);
-      }
+      const { decodedResult } =
+        await contractInstance.methods.getPositionIdForAddress(address, {
+          onAccount: account,
+        });
+      getAssets(decodedResult, contractInstance);
     } catch (error) {
       console.log(error);
     }
@@ -84,9 +83,14 @@ export const StakerProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (iniSDK()) fetchAccount();
-    init();
+    fetchAccount();
   }, []);
+
+  useEffect(() => {
+    if (address) {
+      init();
+    }
+  }, [address]);
 
   const stakeAE = async (stakingLength) => {
     if (!stakeValue && !account) return;
@@ -125,12 +129,13 @@ export const StakerProvider = ({ children }) => {
     return Math.max((secondsRemaining / 60 / 60 / 24).toFixed(0), 0);
   };
 
-  const getAssets = async (ids) => {
+  const getAssets = async (ids, contract) => {
     try {
+      setLoadingAsset(true);
       const assets = [];
 
       for (let i = 0; i < ids.length; i++) {
-        const { decodedResult } = await contract.getPositionById(i, {
+        const { decodedResult } = await contract.methods.getPositionById(i, {
           onAccount: account,
         });
         const parsedAsset = {
@@ -144,6 +149,7 @@ export const StakerProvider = ({ children }) => {
         assets.push(parsedAsset);
       }
       setAssets(assets);
+      setLoadingAsset(false);
       console.log(assets);
     } catch (error) {
       console.log(error);
@@ -207,6 +213,7 @@ export const StakerProvider = ({ children }) => {
   return (
     <StakerContext.Provider
       value={{
+        loadingAsset,
         btnLoading,
         address,
         balance,

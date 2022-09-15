@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import Link from "next/link";
 import Button from "./Button";
 import { StakerContext } from "../../context/StakerContext";
+import Logo from "../../assets/staker.png";
 
 function Header() {
   const { address, fetchAccount } = useContext(StakerContext);
@@ -11,12 +12,9 @@ function Header() {
     <header className="sticky top-0 z-30 flex w-full items-center justify-between bg-[#E7ECEE] p-4">
       <div className="flex items-center justify-center lg:w-1/6">
         <Link href="/">
-          <div className="relative h-10 w-5 cursor-pointer opacity-75 transition hover:opacity-100">
-            <Image
-              src="https://rb.gy/vsvv2o"
-              layout="fill"
-              objectFit="contain"
-            />
+          <div className="relative justify-center text-center items-center flex cursor-pointer opacity-75 transition hover:opacity-100">
+            <Image height={50} width={40} src={Logo} alt="staker" />
+            <p className="text-lg sm:hidden block font-bold ml-2">Staker</p>
           </div>
         </Link>
       </div>

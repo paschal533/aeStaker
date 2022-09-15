@@ -4,7 +4,7 @@ import { Flex, Text, Box, Grid, Divider, Link } from "@chakra-ui/react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { TwitterShareButton } from "react-twitter-embed";
-//import Logo from '../assets/logo.png';
+import Logo from "../../assets/staker.png";
 
 const TextLink = ({ text, href }: any) => {
   return (
@@ -40,12 +40,7 @@ export default function Footer() {
       >
         <NextLink href="/" passHref>
           <Flex alignItems="center" experimental_spaceX="6" cursor="pointer">
-            <Image
-              height={80}
-              width={80}
-              src="https://rb.gy/vsvv2o"
-              alt="dfunds"
-            />
+            <Image height={90} width={80} src={Logo} alt="dfunds" />
             <Flex
               fontSize={{ base: "4xl", lg: "6xl" }}
               color="white"
