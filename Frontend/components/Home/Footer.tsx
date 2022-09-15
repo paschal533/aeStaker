@@ -47,7 +47,7 @@ export default function Footer() {
               alignItems="center"
             >
               <Text fontFamily="heading" fontWeight="extrabold">
-                Stake{" "}
+                aeStake{" "}
               </Text>
               <Text ml="0.5" fontFamily="body" fontWeight="medium" mb="1">
                 R
@@ -71,9 +71,9 @@ export default function Footer() {
           <Grid templateColumns="repeat(1,1fr)" gap="4">
             <TextLink text="Contract" href="/" />
             <TwitterShareButton
-              url={"https://dfund.netlify.app/"}
+              url={"https://aestaker.netlify.app/"}
               options={{
-                text: "DFunds | A Decenterized fund raiser app",
+                text: "aeStaker | A Decenterized staking and borrowing app",
               }}
             />
           </Grid>

@@ -14,7 +14,7 @@ function Header() {
         <Link href="/">
           <div className="relative justify-center text-center items-center flex cursor-pointer opacity-75 transition hover:opacity-100">
             <Image height={50} width={40} src={Logo} alt="staker" />
-            <p className="text-lg sm:hidden block font-bold ml-2">Staker</p>
+            <p className="text-lg sm:hidden block font-bold ml-2">aeStaker</p>
           </div>
         </Link>
       </div>
