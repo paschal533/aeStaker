@@ -135,7 +135,7 @@ payable contract Stake =
         aeInterest =  (8 * amount) / 100,
         paid = false}
 
-    put(state{borrowers[state.borrowPositionId] = new_borrower})
+    //put(state{borrowers[state.borrowPositionId] = new_borrower})
     put(state{borrowerIdByAddress[sendTo] = state.borrowPositionId })
     Chain.event(Borrow(sendTo, amount, state.borrowPositionId))
     put(state{borrowPositionId = state.borrowPositionId + 1})
